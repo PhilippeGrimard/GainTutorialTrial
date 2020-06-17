@@ -313,60 +313,45 @@ void GainplugintrialAudioProcessorEditor::resized()
 }
 
   //Below is from Plugin Editor.h
-  /*
+ /*
   ==============================================================================
 
     This file was auto-generated!
 
     It contains the basic framework code for a JUCE plugin editor.
- //This is what the user sees/ What he can adjust
+ This is where we declare our objects
 
   ==============================================================================
 */
 
+#pragma once
+
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "PluginEditor.h"
 
 //==============================================================================
-GainplugintrialAudioProcessorEditor::GainplugintrialAudioProcessorEditor (GainplugintrialAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor(p)
+/**
+*/
+class GainplugintrialAudioProcessorEditor  : public AudioProcessorEditor
 {
+public:
+    GainplugintrialAudioProcessorEditor (GainplugintrialAudioProcessor&);
+    ~GainplugintrialAudioProcessorEditor();
+
+    //==============================================================================
+    void paint (Graphics&) override;
+    void resized() override;
+
+private:
+    // This reference is provided as a quick way for your editor to
+    // access the processor object that created it.
     
-    mGainSlider.setSliderStyle (Slider::SliderStyle::LinearVertical);
-        //LinearVertical is one of the SliderStyle within the Slider class
-    mGainSlider.setRange(0.0f, 1.0f,0.01f);
-        //first argument [0.0f] is initial minimum value of 0.0 where f denotes float value
-        //second argument [1.0f] is initial maximum value of 0.0 where f denotes float value
-        //Third argument [0.01f] is increment value of 0.01 where f denotes float value
-    mGainSlider.setValue (0.5f);
-    addAndMakeVisible(mGainSlider);
-        //addAndMakeVisible denotes that the child component [mGainSlider] is contained by the parent of the Processor
+    Slider mGainSlider; //prefix m denote member variables
     
-    
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (200, 300);
-}
+    GainplugintrialAudioProcessor& processor;
 
-GainplugintrialAudioProcessorEditor::~GainplugintrialAudioProcessorEditor()
-{
-}
-
-//==============================================================================
-void GainplugintrialAudioProcessorEditor::paint (Graphics& g)
-{
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll(Colours::black);
-}
-
-void GainplugintrialAudioProcessorEditor::resized()
-{
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-    
-    mGainSlider.setBounds(getWidth()/2-50, getHeight()/2-75 , 100, 150 );
-    
-}
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainplugintrialAudioProcessorEditor)
+};
 
 
 
@@ -375,6 +360,7 @@ void GainplugintrialAudioProcessorEditor::resized()
 
 
 
+// Main .Jucer file
 
 <?xml version="1.0" encoding="UTF-8"?>
 
